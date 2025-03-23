@@ -1,0 +1,62 @@
+﻿<Window x:Class="RatingMeApp.Windows.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RatingMeApp.Windows"
+        mc:Ignorable="d"
+        Title="RatingMeApp" Height="600" Width="700"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="#FF949494">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Clip">
+                <Setter.Value>
+                    <RectangleGeometry Rect="0,0,70,30" RadiusX="7" RadiusY="7"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <ListBox x:Name="visitorsList" 
+                 ItemsSource="{Binding}" 
+                 Background="#FFAFAFAF" 
+                 BorderThickness="0" 
+                 VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.CanContentScroll="False">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="560" Background="White" Height="50" Margin="2">
+                        <StackPanel.Clip>
+                            <RectangleGeometry Rect="0,0,560,50" RadiusX="10" RadiusY="10"/>
+                        </StackPanel.Clip>
+                        <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Fio}" FontSize="16"/>
+                        <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Pas}" FontSize="13"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Добавить" Click="AddVisitor_Click"/>
+            <Button Content="Изменить" Click="EditVisitor_Click"/>
+            <Button Content="Удалить" Click="DeleteVisitor_Click"/>
+            <Button Content="Назад" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
