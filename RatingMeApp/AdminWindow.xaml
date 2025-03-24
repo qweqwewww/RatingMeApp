@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RatingMeApp.Windows"
         mc:Ignorable="d"
-        Title="RatingMeApp" Height="600" Width="700"
+        Title="RatingMe" Height="600" Width="700"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
@@ -46,16 +46,16 @@
                             <RectangleGeometry Rect="0,0,560,50" RadiusX="10" RadiusY="10"/>
                         </StackPanel.Clip>
                         <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Fio}" FontSize="16"/>
-                        <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Pas}" FontSize="13"/>
+                        <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Password}" FontSize="13"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить" Click="AddVisitor_Click"/>
-            <Button Content="Изменить" Click="EditVisitor_Click"/>
-            <Button Content="Удалить" Click="DeleteVisitor_Click"/>
+            <Button Content="Добавить" Click="AddTeacher_Click"/>
+            <Button Content="Изменить" Click="EditTeacher_Click"/>
+            <Button Content="Удалить" Click="DeleteTeacher_Click"/>
             <Button Content="Назад" IsCancel="True"/>
         </StackPanel>
     </Grid>

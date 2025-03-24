@@ -22,17 +22,17 @@ namespace RatingMeApp.Windows
         {
             InitializeComponent();
 
-            Loaded += UserEditWindow_Loaded;
+            Loaded += AdminWindow_Loaded;
         }
 
-        private void UserEditWindow_Loaded(object sender, RoutedEventArgs e)
+        private void AdminWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //db.Database.EnsureCreated();
             //db.Visitors.Load();
             //DataContext = db.Visitors.Local.ToObservableCollection();
         }
 
-        private void AddVisitor_Click(object sender, RoutedEventArgs e)
+        private void AddTeacher_Click(object sender, RoutedEventArgs e)
         {
             //DialogUserWindow DialogUserWindow = new DialogUserWindow(new Visitor());
             //if (DialogUserWindow.ShowDialog() == true)
@@ -43,7 +43,7 @@ namespace RatingMeApp.Windows
             //}
         }
 
-        private void EditVisitor_Click(object sender, RoutedEventArgs e)
+        private void EditTeacher_Click(object sender, RoutedEventArgs e)
         {
             //Visitor? visitor = visitorsList.SelectedItem as Visitor;
             //if (visitor is null) return;
@@ -92,7 +92,7 @@ namespace RatingMeApp.Windows
             //}
         }
         // удаление
-        private void DeleteVisitor_Click(object sender, RoutedEventArgs e)
+        private void DeleteTeacher_Click(object sender, RoutedEventArgs e)
         {
             //Visitor? visitor = visitorsList.SelectedItem as Visitor;
             //if (visitor is null) return;

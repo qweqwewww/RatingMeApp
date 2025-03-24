@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RatingMeApp"
         mc:Ignorable="d"
-        Title="RatingMeApp" Height="800" Width="1600"
+        Title="RatingMe" Height="800" Width="1600"
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
@@ -83,7 +83,7 @@
                     Height="50" Width="1600">
             <Grid>
                 <Button Style="{StaticResource TopButtonStyle}"
-                        Click="MainClose_CLick"
+                        Click="Close_CLick"
                         Margin="10"
                         Content="X"
                         HorizontalAlignment="Right"/>

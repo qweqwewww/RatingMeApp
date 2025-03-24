@@ -22,7 +22,7 @@ namespace RatingMeApp
             InitializeComponent();
         }
 
-        public void MainClose_CLick(object sender, EventArgs e)
+        public void Close_CLick(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -78,15 +78,15 @@ namespace RatingMeApp
 
         public void Info_Click(object sender, EventArgs e)
         {
-            //MainInfoWindow mainInfoWindow = new MainInfoWindow();
-            //mainInfoWindow.ShowDialog();
+            InformationWindow informationWindow = new InformationWindow();
+            informationWindow.ShowDialog();
         }
 
         private void StudentEnter_Click(object sender, RoutedEventArgs e)
         {
-            //StudentMainWindow studentMainWindow = new StudentMainWindow();
-            //studentMainWindow.Show();
-            //this.Close();
+            StudentWindow studentWindow = new StudentWindow();
+            studentWindow.Show();
+            this.Close();
         }
     }
 }

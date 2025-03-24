@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RatingMeApp"
         mc:Ignorable="d"
-        Title="AddTeacherWindow" Height="450" Width="800">
+        Title="RatingMe" Height="300" Width="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFAFAFAF"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Window.Clip>
+        <RectangleGeometry  Rect="0,0,600,300" RadiusX="15" RadiusY="15"/>
+    </Window.Clip>
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Foreground" Value="DimGray"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Clip">
+                <Setter.Value>
+                    <RectangleGeometry Rect="0,0,484,84" RadiusX="9" RadiusY="9"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="Clip">
+                <Setter.Value>
+                    <RectangleGeometry Rect="0,0,100,50" RadiusX="15" RadiusY="15"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="ФИО"/>
+        <TextBlock Text="Пароль" Grid.Row="1"/>
+
+        <TextBox Text="{Binding Fio}" Name="VisitorFio" Grid.Column="1"/>
+        <TextBox Text="{Binding Password}" Name="VisitorPas" Grid.Column="1" Grid.Row="1"/>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <Button Name="AcceptButton" IsDefault="True" Click="AcceptDialog_Click">Потвердить</Button>
+            <Button IsCancel="True">Отмена</Button>
+        </StackPanel>
     </Grid>
 </Window>
