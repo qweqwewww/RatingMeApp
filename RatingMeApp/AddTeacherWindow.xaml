@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="RatingMe" Height="300" Width="600"
         WindowStartupLocation="CenterScreen"
-        Background="#FFAFAFAF"
+        Background="#FF949494"
         WindowStyle="None"
         AllowsTransparency="True">
     <Window.Clip>
@@ -66,8 +66,8 @@
         <TextBlock Text="ФИО"/>
         <TextBlock Text="Пароль" Grid.Row="1"/>
 
-        <TextBox Text="{Binding Fio}" Name="VisitorFio" Grid.Column="1"/>
-        <TextBox Text="{Binding Password}" Name="VisitorPas" Grid.Column="1" Grid.Row="1"/>
+        <TextBox Text="{Binding Fio}" Name="TeacherFio" Grid.Column="1"/>
+        <TextBox Text="{Binding Password}" Name="TeacherPassword" Grid.Column="1" Grid.Row="1"/>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
             <Button Name="AcceptButton" IsDefault="True" Click="AcceptDialog_Click">Потвердить</Button>

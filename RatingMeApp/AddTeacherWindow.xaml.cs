@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RatingMeApp.Bases.TeacherBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,91 +17,87 @@ namespace RatingMeApp
 {
     public partial class AddTeacherWindow : Window
     {
-        //public bool isemptybox = true;
-        //public int existUser = 0;
-        //public Visitor Visitor { get; private set; }
+        public bool isempty = true;
+        public int existUser = 0;
+        public Teacher Teacher { get; private set; }
 
-        //public DialogUserWindow(Visitor visitor)
-        public AddTeacherWindow()
+        public AddTeacherWindow(Teacher teacher)
         {
             InitializeComponent();
-            //Visitor = visitor;
-            //DataContext = Visitor;
+            Teacher = teacher;
+            DataContext = teacher;
         }
 
         public void AcceptDialog_Click(object sender, RoutedEventArgs e)
         {
-            //if (VisitorPas.Text.Length == 5)
-            //    DialogResult = true;
-            //else MessageBox.Show("Неправильно введено ФИО или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            while (isempty)
+            {
+                if (TeacherPassword.Text.Length == 0 || TeacherFio.Text.Length == 0)
+                {
+                    MessageBox.Show("Поля не могут быть пустыми", "Попробуйте снова", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    break;
+                }
 
-            //while (isemptybox)
-            //{
-            //    if (VisitorPas.Text.Length == 0 || VisitorFio.Text.Length == 0)
-            //    {
-            //        MessageBox.Show("Поля не могут быть пустыми", "Попробуйте снова", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //        break;
-            //    }
+                int upCheck = 0, spaceCheck = 0, fioPasswordNum = 0;
 
-            //    int zagcheck = 0, spacecheck = 0, fiopasnum = 0;
+                int[] indexUp = new int[3];
+                char[] valueUp = new char[3];
 
-            //    int[] indexzag = new int[3];
-            //    char[] valuezag = new char[3];
+                string fiocheck = TeacherFio.Text;
+                string pascheck = TeacherPassword.Text;
 
-            //    string fiocheck = VisitorFio.Text;
-            //    string pascheck = VisitorPas.Text;
+                for (int i = 0; i < fiocheck.Length; i++)
+                {
+                    if (char.IsUpper(fiocheck[i]))
+                    {
+                        if (upCheck < 3)
+                        {
+                            indexUp[upCheck] = i;
+                            valueUp[upCheck] = fiocheck[i];
+                        }
+                        upCheck++;
+                    }
 
-            //    for (int i = 0; i < fiocheck.Length; i++)
-            //    {
-            //        if (char.IsUpper(fiocheck[i]))
-            //        {
-            //            if (zagcheck < 3)
-            //            {
-            //                indexzag[zagcheck] = i;
-            //                valuezag[zagcheck] = fiocheck[i];
-            //            }
-            //            zagcheck++;
-            //        }
+                    if (fiocheck[i] == ' ')
+                        spaceCheck++;
+                }
 
-            //        if (fiocheck[i] == ' ')
-            //            spacecheck++;
-            //    }
+                for (int i = 0; i < 3; i++)
+                {
+                    if (valueUp[i] == pascheck[i])
+                        fioPasswordNum++;
+                }
 
-            //    for (int i = 0; i < 3; i++)
-            //    {
-            //        if (valuezag[i] == pascheck[i])
-            //            fiopasnum++;
-            //    }
+                using (TeacherContext db = new TeacherContext())
+                {
+                    var visitors = db.Teachers.Where(p => p.Fio == TeacherFio.Text);
+                    foreach (Teacher visitor in visitors)
+                    {
+                        if (visitors != null)
+                        {
+                            MessageBox.Show("Такой пользователь уже существует!", "Попробуйте снова", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            existUser++;
+                        }
+                    }
+                }
 
-            //    using (VisitorContext db = new VisitorContext())
-            //    {
-            //        var visitors = db.Visitors.Where(p => p.Fio == VisitorFio.Text);
-            //        foreach (Visitor visitor in visitors)
-            //        {
-            //            if (visitors != null)
-            //            {
-            //                MessageBox.Show("Такой пользователь уже существует!", "Попробуйте снова", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //                existUser++;
-            //            }
-            //        }
-            //    }
+                if (existUser > 0)
+                    break;
 
-            //    if (existUser > 0)
-            //        break;
-
-            //    if (zagcheck == 3 &&
-            //        spacecheck == 2 &&
-            //        fiopasnum == 3 &&
-            //        pascheck.Length == 8)
-            //    {
-            //        DialogResult = true;
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Неправильно введено ФИО или Пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        break;
-            //    }
+                if (upCheck == 3 &&
+                    spaceCheck == 2 &&
+                    fioPasswordNum == 3 &&
+                    pascheck.Length == 8)
+                {
+                    DialogResult = true;
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Неправильно введено ФИО или Пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+                }
+            }
         }
     }
 }

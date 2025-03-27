@@ -1,4 +1,4 @@
-﻿<Window x:Class="RatingMeApp.AddDayWindowxaml"
+﻿<Window x:Class="RatingMeApp.AddDayWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -122,31 +122,32 @@
             </Grid.Clip>
             <TextBox Style="{StaticResource TextBoxStyle}" 
                      Grid.Row="0"
-                     Text="{Binding First}"/>
+                     Text="{Binding One}"/>
 
             <TextBox Style="{StaticResource TextBoxStyle}"
                      Grid.Row="1"
-                     Text="{Binding Second}"/>
+                     Text="{Binding Two}"/>
 
             <TextBox Style="{StaticResource TextBoxStyle}"
                      Grid.Row="2"
-                     Text="{Binding Third}"/>
+                     Text="{Binding Three}"/>
 
             <TextBox Style="{StaticResource TextBoxStyle}"
                      Grid.Row="3"
-                     Text="{Binding Fourth}"/>
+                     Text="{Binding Four}"/>
 
             <TextBox Style="{StaticResource TextBoxStyle}"
                      Grid.Row="4"
-                     Text="{Binding Fifth}"/>
+                     Text="{Binding Five}"/>
 
             <TextBox Style="{StaticResource TextBoxStyle}"
                      Grid.Row="5"
-                     Text="{Binding Sixth}"/>
+                     Text="{Binding Six}"/>
         </Grid>
 
         <Button Style="{StaticResource ButtonStyle}"
-                Grid.Column="1" Click="Accept_Click"
+                Grid.Column="1"
+                Click="Accept_Click"
                 Content="Потвердить"/>
 
         <Button Style="{StaticResource ButtonStyle}"

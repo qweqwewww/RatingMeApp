@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RatingMeApp.Bases.TeacherBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace RatingMeApp.Windows
 {
     public partial class AdminWindow : Window
     {
-        //VisitorContext db = new VisitorContext();
+        TeacherContext db = new TeacherContext();
         public AdminWindow()
         {
             InitializeComponent();
@@ -27,83 +28,54 @@ namespace RatingMeApp.Windows
 
         private void AdminWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //db.Database.EnsureCreated();
-            //db.Visitors.Load();
-            //DataContext = db.Visitors.Local.ToObservableCollection();
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+            db.Teachers.Load();
+            DataContext = db.Teachers.Local.ToObservableCollection();
         }
 
         private void AddTeacher_Click(object sender, RoutedEventArgs e)
         {
-            //DialogUserWindow DialogUserWindow = new DialogUserWindow(new Visitor());
-            //if (DialogUserWindow.ShowDialog() == true)
-            //{
-            //    Visitor Visitor = DialogUserWindow.Visitor;
-            //    db.Visitors.Add(Visitor);
-            //    db.SaveChanges();
-            //}
+            AddTeacherWindow AddTeacherWindow = new AddTeacherWindow(new Teacher());
+            if (AddTeacherWindow.ShowDialog() == true)
+            {
+                Teacher Teacher = AddTeacherWindow.Teacher;
+                db.Teachers.Add(Teacher);
+                db.SaveChanges();
+            }
         }
 
         private void EditTeacher_Click(object sender, RoutedEventArgs e)
         {
-            //Visitor? visitor = visitorsList.SelectedItem as Visitor;
-            //if (visitor is null) return;
+            Teacher? teacher = teacherList.SelectedItem as Teacher;
+            if (teacher is null) return;
 
-            //DialogUserWindow DialogUserWindow = new DialogUserWindow(new Visitor
-            //{
-            //    Id = visitor.Id,
-            //    Fio = visitor.Fio,
-            //    Pas = visitor.Pas
-            //});
+            AddTeacherWindow AddTeacherWindow = new AddTeacherWindow(new Teacher
+            {
+                TeacherId = teacher.TeacherId,
+                Fio = teacher.Fio,
+                Password = teacher.Password
+            });
 
-            //if (DialogUserWindow.ShowDialog() == true)
-            //{
-            //    visitor = db.Visitors.Find(DialogUserWindow.Visitor.Id);
-            //    if (visitor != null)
-            //    {
-            //        visitor.Fio = DialogUserWindow.Visitor.Fio;
-            //        visitor.Pas = DialogUserWindow.Visitor.Pas;
-            //        db.SaveChanges();
-            //        visitorsList.Items.Refresh();
-            //    }
-            //}
-
-            //User? user = usersList.SelectedItem as User;
-            //// если ни одного объекта не выделено, выходим
-            //if (user is null) return;
-
-            //UserWindow UserWindow = new UserWindow(new User
-            //{
-            //    Id = user.Id,
-            //    Age = user.Age,
-            //    Name = user.Name
-            //});
-
-            //if (UserWindow.ShowDialog() == true)
-            //{
-            //    // получаем измененный объект
-            //    user = db.Users.Find(UserWindow.User.Id);
-            //    if (user != null)
-            //    {
-            //        user.Age = UserWindow.User.Age;
-            //        user.Name = UserWindow.User.Name;
-            //        db.SaveChanges();
-            //        usersList.Items.Refresh();
-            //    }
-            //}
+            if (AddTeacherWindow.ShowDialog() == true)
+            {
+                teacher = db.Teachers.Find(AddTeacherWindow.Teacher.TeacherId);
+                if (teacher != null)
+                {
+                    teacher.Fio = AddTeacherWindow.Teacher.Fio;
+                    teacher.Password = AddTeacherWindow.Teacher.Password;
+                    db.SaveChanges();
+                    teacherList.Items.Refresh();
+                }
+            }
         }
-        // удаление
+
         private void DeleteTeacher_Click(object sender, RoutedEventArgs e)
         {
-            //Visitor? visitor = visitorsList.SelectedItem as Visitor;
-            //if (visitor is null) return;
-            //db.Visitors.Remove(visitor);
-            //db.SaveChanges();
-            //// получаем выделенный объект
-            //User? user = usersList.SelectedItem as User;
-            //// если ни одного объекта не выделено, выходим
-            //if (user is null) return;
-            //db.Users.Remove(user);
-            //db.SaveChanges();
+            Teacher? teacher = teacherList.SelectedItem as Teacher;
+            if (teacher is null) return;
+            db.Teachers.Remove(teacher);
+            db.SaveChanges();
         }
     }
 }

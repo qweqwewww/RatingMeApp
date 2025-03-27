@@ -15,15 +15,16 @@ using System.Windows.Shapes;
 
 namespace RatingMeApp
 {
-    public partial class AddDateWindow : Window
+    public partial class AddDayWindow : Window
     {
-        public Date Date { get; private set; }
-        public AddDateWindow(Date date)
+        public Schedule Schedule { get; private set; }
+        public AddDayWindow(Schedule schedule)
         {
             InitializeComponent();
-            Date = date;
-            DataContext = Date;
+            Schedule = schedule;
+            DataContext = Schedule;
         }
+
         public void Accept_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;

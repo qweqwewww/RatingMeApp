@@ -174,7 +174,7 @@
                                Text="Суббота"/>
                 </Grid>
 
-                <ListBox x:Name="scList" 
+                <ListBox x:Name="DayList" 
                          ItemsSource="{Binding}" 
                          Grid.Column="5" Grid.Row="2" Grid.RowSpan="12" Grid.ColumnSpan="26"
                          BorderThickness="0" 
@@ -197,22 +197,22 @@
                                         </Grid.ColumnDefinitions>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="0"
-                                            Text="{Binding First}"/>
+                                            Text="{Binding One}"/>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="1"
-                                            Text="{Binding Second}"/>
+                                            Text="{Binding Two}"/>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="2"
-                                            Text="{Binding Third}"/>
+                                            Text="{Binding Three}"/>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="3"
-                                            Text="{Binding Fourth}"/>
+                                            Text="{Binding Four}"/>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="4"
-                                            Text="{Binding Fifth}"/>
+                                            Text="{Binding Five}"/>
 
                                         <TextBlock Style="{StaticResource ScheduleTextStyle}" Grid.Column="5"
-                                            Text="{Binding Sixth}"/>
+                                            Text="{Binding Six}"/>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -229,21 +229,23 @@
                          Background="LightCyan" 
                          BorderThickness="0"
                          Visibility="Hidden" 
-                         VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.CanContentScroll="False">
+                         VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.CanContentScroll="False"
+                         SelectionChanged="SelectedDate">
                     <ListBox.Clip>
                         <RectangleGeometry Rect="0,0,175,100" RadiusX="7" RadiusY="7"/>
                     </ListBox.Clip>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Grid Width="145" Height="50" Panel.ZIndex="13">
+                                <Grid Width="130" Height="50" Panel.ZIndex="13">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <Button Content="{Binding WeekDau}" 
+                                    <Button Content="{Binding SetDate}" 
                                             BorderThickness="0" Background="LightCyan"
                                             FontSize="15" Foreground="DarkSlateGray" FontWeight="DemiBold"
-                                            Click="BaseDate_Click"/>
+                                            Click="BaseDate_Click"
+                                            Name="ButtonPlace"/>
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>
@@ -252,7 +254,8 @@
 
                 <Button Style="{StaticResource UsefulButtonStyle}"
                         Grid.Column="1"
-                        Content="Дата"/>
+                        Content="Дата"
+                        Name="DatePlace"/>
 
                 <Button Style="{StaticResource UsefulButtonStyle}"
                         Grid.Column="5"
@@ -266,15 +269,20 @@
 
                 <Button Style="{StaticResource UsefulButtonStyle}"
                         Grid.Column="13"
+                        Click="RemoveDate_Click"
+                        Content="Удалить дату"/>
+
+                <Button Style="{StaticResource UsefulButtonStyle}"
+                        Grid.Column="17"
                         Click="AddDay_Click"
                         Content="Добавить день"/>
 
                 <Button Style="{StaticResource UsefulButtonStyle}"
-                        Grid.Column="17"
+                        Grid.Column="21"
                         Content="Изменить день"/>
 
                 <Button Style="{StaticResource UsefulButtonStyle}"
-                        Grid.Column="21"
+                        Grid.Column="25"
                         Click="RemoveDay_Click"
                         Content="Удалить день"/>
             </Grid>

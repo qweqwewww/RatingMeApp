@@ -34,16 +34,16 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         
-        <ListBox x:Name="visitorsList" 
+        <ListBox x:Name="teacherList" 
                  ItemsSource="{Binding}" 
                  Background="#FFAFAFAF" 
                  BorderThickness="0" 
                  VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.CanContentScroll="False">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Width="560" Background="White" Height="50" Margin="2">
+                    <StackPanel Width="660" Background="White" Height="50" Margin="2">
                         <StackPanel.Clip>
-                            <RectangleGeometry Rect="0,0,560,50" RadiusX="10" RadiusY="10"/>
+                            <RectangleGeometry Rect="0,0,660,50" RadiusX="10" RadiusY="10"/>
                         </StackPanel.Clip>
                         <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Fio}" FontSize="16"/>
                         <TextBlock Foreground="DimGray" FontWeight="Medium" Text="{Binding Password}" FontSize="13"/>

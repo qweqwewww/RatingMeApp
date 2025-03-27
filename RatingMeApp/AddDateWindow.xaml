@@ -54,7 +54,7 @@
                  Height="75" Width="275"
                  VerticalAlignment="Bottom" Padding="22"
                  TextAlignment="Left" FontSize="16"
-                 Text="{Binding WeekDau}">
+                 Text="{Binding SetDate}">
             <TextBox.Clip>
                 <RectangleGeometry Rect="0,0,275,75" RadiusX="7" RadiusY="7"/>
             </TextBox.Clip>
